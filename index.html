@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="13Frame - A modern, accessible CSS framework with glass effects and premium design">
+    <title>13Frame - Modern CSS Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="13frame.css">
+    <style>
+        /* Custom styles for the homepage */
+        body {
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #1a0b2e 100%);
+            min-height: 100vh;
+            color: var(--trece-white);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: pulse 5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            padding: var(--trece-space-6);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: var(--trece-space-5);
+            background: linear-gradient(135deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--trece-gray-300);
+            margin-bottom: var(--trece-space-7);
+            line-height: 1.8;
+        }
+
+        .section {
+            padding: var(--trece-space-9) 0;
+        }
+
+        .section-title {
+            font-size: var(--trece-text-4xl);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--trece-space-3);
+        }
+
+        .section-subtitle {
+            font-size: var(--trece-text-lg);
+            color: var(--trece-gray-300);
+            text-align: center;
+            margin-bottom: var(--trece-space-7);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .code-block {
+            background: var(--trece-dark-soft);
+            border: 1px solid var(--trece-gray-800);
+            border-radius: var(--trece-radius-lg);
+            padding: var(--trece-space-5);
+            margin-top: var(--trece-space-4);
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: var(--trece-font-mono);
+            font-size: var(--trece-text-sm);
+            color: var(--trece-gray-300);
+            line-height: 1.8;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--trece-primary), var(--trece-secondary));
+            border-radius: var(--trece-radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--trece-text-3xl);
+            margin-bottom: var(--trece-space-4);
+        }
+
+        .demo-card {
+            height: 100%;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--trece-space-4) 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: var(--trece-text-2xl);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--trece-space-5);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--trece-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--trece-transition-base);
+        }
+
+        .nav-links a:hover {
+            color: var(--trece-primary-light);
+        }
+
+        .glass-demo-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: var(--trece-space-8);
+            border-radius: var(--trece-radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-demo-bg::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="trece-glass-dark">
+        <div class="trece-container">
+            <div class="nav-content">
+                <div class="logo">13Frame</div>
+                <ul class="nav-links">
+                    <li><a href="#grid">Grid</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#glass">Glass</a></li>
+                    <li><a href="#buttons">Buttons</a></li>
+                    <li><a href="#forms">Forms</a></li>
+                </ul>
+                <a href="https://github.com/trecenode" class="trece-btn trece-btn-primary trece-btn-sm">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">13Frame</h1>
+            <p class="hero-subtitle">
+                A modern, accessible CSS framework with stunning glass effects,
+                flexible grid system, and premium design components.
+                Build beautiful interfaces faster.
+            </p>
+            <div class="trece-flex trece-gap-4 trece-justify-center trece-flex-wrap">
+                <a href="#grid" class="trece-btn trece-btn-primary trece-btn-lg">Get Started</a>
+                <a href="#examples" class="trece-btn trece-btn-outline trece-btn-lg"
+                    style="border-color: white; color: white;">View Examples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid System Section -->
+    <section id="grid" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Flexible Grid System</h2>
+            <p class="section-subtitle">
+                A powerful 12-column grid system with responsive breakpoints and flexible gap utilities.
+            </p>
+
+            <div class="trece-grid trece-grid-gap-4 trece-mb-6">
+                <div class="trece-col-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-12</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trece-grid trece-grid-gap-4 trece-mb-6">
+                <div class="trece-col-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-6</code>
+                    </div>
+                </div>
+                <div class="trece-col-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-6</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trece-grid trece-grid-gap-4 trece-mb-6">
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-4</code>
+                    </div>
+                </div>
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-4</code>
+                    </div>
+                </div>
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <div class="trece-glass-card trece-text-center trece-p-5">
+                        <code>.trece-col-4</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <code>&lt;div class="trece-grid trece-grid-gap-4"&gt;
+  &lt;div class="trece-col-6 trece-col-sm-12"&gt;...&lt;/div&gt;
+  &lt;div class="trece-col-6 trece-col-sm-12"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section id="cards" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Beautiful Cards</h2>
+            <p class="section-subtitle">
+                Versatile card components with multiple variants and hover effects.
+            </p>
+
+            <div class="trece-grid trece-grid-gap-5">
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card demo-card">
+                        <div class="trece-card-header">
+                            <h3 class="trece-card-title">Default Card</h3>
+                            <p class="trece-card-subtitle">Standard card with shadow</p>
+                        </div>
+                        <div class="trece-card-body">
+                            This is a default card with a clean, professional look. Perfect for content presentation.
+                        </div>
+                        <div class="trece-card-footer">
+                            <button class="trece-btn trece-btn-primary trece-btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card trece-card-primary demo-card">
+                        <div class="trece-card-header">
+                            <h3 class="trece-card-title">Primary Card</h3>
+                            <p class="trece-card-subtitle" style="color: rgba(255,255,255,0.8);">Gradient background</p>
+                        </div>
+                        <div class="trece-card-body">
+                            Eye-catching primary card with gradient background. Great for highlighting important
+                            content.
+                        </div>
+                        <div class="trece-card-footer">
+                            <button class="trece-btn trece-btn-outline trece-btn-sm"
+                                style="border-color: white; color: white;">Explore</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <div class="trece-card trece-card-secondary demo-card">
+                        <div class="trece-card-header">
+                            <h3 class="trece-card-title">Secondary Card</h3>
+                            <p class="trece-card-subtitle" style="color: rgba(255,255,255,0.8);">Ocean gradient</p>
+                        </div>
+                        <div class="trece-card-body">
+                            Beautiful secondary card with ocean-inspired gradient. Perfect for visual variety.
+                        </div>
+                        <div class="trece-card-footer">
+                            <button class="trece-btn trece-btn-ghost trece-btn-sm"
+                                style="color: white;">Discover</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block trece-mt-6">
+                <code>&lt;div class="trece-card"&gt;
+  &lt;div class="trece-card-header"&gt;
+    &lt;h3 class="trece-card-title"&gt;Card Title&lt;/h3&gt;
+    &lt;p class="trece-card-subtitle"&gt;Subtitle&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="trece-card-body"&gt;Content here&lt;/div&gt;
+  &lt;div class="trece-card-footer"&gt;Footer content&lt;/div&gt;
+&lt;/div&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glass Effects Section -->
+    <section id="glass" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Glassmorphism Effects</h2>
+            <p class="section-subtitle">
+                Modern glass effects with backdrop blur for stunning UI elements.
+            </p>
+
+            <div class="glass-demo-bg">
+                <div class="trece-grid trece-grid-gap-5">
+                    <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-glass-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3 class="trece-text-xl trece-font-bold trece-mb-3">Glass Card</h3>
+                            <p>Standard glass effect.</p>
+                        </div>
+                    </div>
+
+                    <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-glass-light trece-p-5 trece-rounded-xl">
+                            <div class="feature-icon">✨</div>
+                            <h3 class="trece-text-xl trece-font-bold trece-mb-3">Glass Light</h3>
+                            <p>Lighter glass variant for bright backgrounds.</p>
+                        </div>
+                    </div>
+
+                    <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                        <div class="trece-glass-dark trece-p-5 trece-rounded-xl">
+                            <div class="feature-icon">🌙</div>
+                            <h3 class="trece-text-xl trece-font-bold trece-mb-3">Glass Dark</h3>
+                            <p>Darker glass variant perfect for dark themes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block trece-mt-6">
+                <code>&lt;div class="trece-glass-card"&gt;Glass content&lt;/div&gt;
+&lt;div class="trece-glass-light"&gt;Light glass&lt;/div&gt;
+&lt;div class="trece-glass-dark"&gt;Dark glass&lt;/div&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buttons Section -->
+    <section id="buttons" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Button Styles</h2>
+            <p class="section-subtitle">
+                A complete set of button styles with multiple variants and sizes.
+            </p>
+
+            <div class="trece-glass-card trece-p-7">
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-5">Button Variants</h3>
+                <div class="trece-flex trece-gap-4 trece-flex-wrap trece-mb-6">
+                    <button class="trece-btn trece-btn-primary">Primary</button>
+                    <button class="trece-btn trece-btn-secondary">Secondary</button>
+                    <button class="trece-btn trece-btn-accent">Accent</button>
+                    <button class="trece-btn trece-btn-outline">Outline</button>
+                    <button class="trece-btn trece-btn-ghost">Ghost</button>
+                </div>
+
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-5 trece-mt-7">Button Sizes</h3>
+                <div class="trece-flex trece-gap-4 trece-items-center trece-flex-wrap">
+                    <button class="trece-btn trece-btn-primary trece-btn-sm">Small</button>
+                    <button class="trece-btn trece-btn-primary">Medium</button>
+                    <button class="trece-btn trece-btn-primary trece-btn-lg">Large</button>
+                    <button class="trece-btn trece-btn-primary trece-btn-xl">Extra Large</button>
+                </div>
+            </div>
+
+            <div class="code-block trece-mt-6">
+                <code>&lt;button class="trece-btn trece-btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="trece-btn trece-btn-outline"&gt;Outline&lt;/button&gt;
+&lt;button class="trece-btn trece-btn-primary trece-btn-lg"&gt;Large&lt;/button&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forms Section -->
+    <section id="forms" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Form Components</h2>
+            <p class="section-subtitle">
+                Accessible and beautiful form elements with proper focus states.
+            </p>
+
+            <div class="trece-grid trece-grid-gap-6">
+                <div class="trece-col-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-p-6">
+                        <h3 class="trece-text-2xl trece-font-bold trece-mb-5">Contact Form</h3>
+                        <form>
+                            <div class="trece-form-group">
+                                <label for="name" class="trece-label" style="color: white;">Full Name</label>
+                                <input type="text" id="name" class="trece-input" placeholder="John Doe">
+                            </div>
+
+                            <div class="trece-form-group">
+                                <label for="email" class="trece-label" style="color: white;">Email Address</label>
+                                <input type="email" id="email" class="trece-input" placeholder="john@example.com">
+                                <span class="trece-form-help" style="color: rgba(255,255,255,0.7);">We'll never share
+                                    your email.</span>
+                            </div>
+
+                            <div class="trece-form-group">
+                                <label for="subject" class="trece-label" style="color: white;">Subject</label>
+                                <select id="subject" class="trece-select">
+                                    <option>General Inquiry</option>
+                                    <option>Technical Support</option>
+                                    <option>Feedback</option>
+                                </select>
+                            </div>
+
+                            <div class="trece-form-group">
+                                <label for="message" class="trece-label" style="color: white;">Message</label>
+                                <textarea id="message" class="trece-textarea"
+                                    placeholder="Your message here..."></textarea>
+                            </div>
+
+                            <button type="submit" class="trece-btn trece-btn-primary trece-w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="trece-col-6 trece-col-sm-12">
+                    <div class="trece-glass-card trece-p-6">
+                        <h3 class="trece-text-2xl trece-font-bold trece-mb-5">Form States</h3>
+
+                        <div class="trece-form-group">
+                            <label for="normal" class="trece-label" style="color: white;">Normal Input</label>
+                            <input type="text" id="normal" class="trece-input" placeholder="Type something...">
+                        </div>
+
+                        <div class="trece-form-group">
+                            <label for="error" class="trece-label" style="color: white;">Error State</label>
+                            <input type="text" id="error" class="trece-input trece-input-error" value="Invalid input">
+                            <span class="trece-form-error">This field is required.</span>
+                        </div>
+
+                        <div class="trece-form-group">
+                            <label for="disabled" class="trece-label" style="color: white;">Disabled Input</label>
+                            <input type="text" id="disabled" class="trece-input" placeholder="Disabled" disabled>
+                        </div>
+
+                        <div class="trece-form-group">
+                            <label for="textarea-demo" class="trece-label" style="color: white;">Textarea</label>
+                            <textarea id="textarea-demo" class="trece-textarea"
+                                placeholder="Enter your text here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block trece-mt-6">
+                <code>&lt;div class="trece-form-group"&gt;
+  &lt;label for="email" class="trece-label"&gt;Email&lt;/label&gt;
+  &lt;input type="email" id="email" class="trece-input" placeholder="email@example.com"&gt;
+  &lt;span class="trece-form-help"&gt;Helper text&lt;/span&gt;
+&lt;/div&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Utilities Section -->
+    <section id="utilities" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Utility Classes</h2>
+            <p class="section-subtitle">
+                Comprehensive utility classes for spacing, colors, typography, and more.
+            </p>
+
+            <div class="trece-grid trece-grid-gap-5">
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-glass-card">
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-4">Spacing</h3>
+                        <p class="trece-mb-3">Margin and padding utilities from 0-8:</p>
+                        <code class="trece-text-sm">
+                            .trece-m-{0-8}<br>
+                            .trece-mt-{0-8}<br>
+                            .trece-p-{0-8}<br>
+                            .trece-pt-{0-8}
+                        </code>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-glass-card">
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-4">Typography</h3>
+                        <p class="trece-mb-3">Text size utilities:</p>
+                        <code class="trece-text-sm">
+                            .trece-text-xs<br>
+                            .trece-text-sm<br>
+                            .trece-text-lg<br>
+                            .trece-text-4xl
+                        </code>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <div class="trece-glass-card">
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-4">Flex & Grid</h3>
+                        <p class="trece-mb-3">Layout utilities:</p>
+                        <code class="trece-text-sm">
+                            .trece-flex<br>
+                            .trece-items-center<br>
+                            .trece-justify-between<br>
+                            .trece-gap-4
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trece-mt-7 trece-glass-card trece-p-6">
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-5">Color Utilities</h3>
+                <div class="trece-grid trece-grid-gap-4">
+                    <div class="trece-col-3 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-bg-primary trece-p-4 trece-rounded-lg trece-text-center trece-text-white">
+                            Primary
+                        </div>
+                    </div>
+                    <div class="trece-col-3 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-bg-secondary trece-p-4 trece-rounded-lg trece-text-center trece-text-white">
+                            Secondary
+                        </div>
+                    </div>
+                    <div class="trece-col-3 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-bg-accent trece-p-4 trece-rounded-lg trece-text-center trece-text-white">
+                            Accent
+                        </div>
+                    </div>
+                    <div class="trece-col-3 trece-col-md-6 trece-col-sm-12">
+                        <div class="trece-bg-dark trece-p-4 trece-rounded-lg trece-text-center trece-text-white">
+                            Dark
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Why 13Frame?</h2>
+            <p class="section-subtitle">
+                Built with modern web standards and accessibility in mind.
+            </p>
+
+            <div class="trece-grid trece-grid-gap-5">
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">⚡</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Lightweight</h3>
+                        <p class="trece-text-gray">Pure CSS with no dependencies. Fast loading and minimal footprint.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">♿</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Accessible</h3>
+                        <p class="trece-text-gray">Built with WCAG guidelines in mind. Proper focus states and semantic
+                            HTML.</p>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">📱</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Responsive</h3>
+                        <p class="trece-text-gray">Mobile-first design with flexible breakpoints for all screen sizes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">🎨</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Customizable</h3>
+                        <p class="trece-text-gray">CSS variables make theming and customization effortless.</p>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">🚀</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Modern</h3>
+                        <p class="trece-text-gray">Glass effects, gradients, and smooth animations out of the box.</p>
+                    </div>
+                </div>
+
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <div class="trece-card trece-text-center">
+                        <div class="feature-icon" style="margin-left: auto; margin-right: auto;">📦</div>
+                        <h3 class="trece-text-xl trece-font-bold trece-mb-3">Complete</h3>
+                        <p class="trece-text-gray">Everything you need: grid, components, utilities, and more.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="section">
+        <div class="trece-container">
+            <h2 class="section-title">Getting Started</h2>
+            <p class="section-subtitle">
+                Start using 13Frame in your project in seconds.
+            </p>
+
+            <div class="trece-glass-card trece-p-7" style="max-width: 800px; margin: 0 auto;">
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-4">1. Include the CSS</h3>
+                <div class="code-block">
+                    <code>&lt;link rel="stylesheet" href="13frame.css"&gt;</code>
+                </div>
+
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-4 trece-mt-6">2. Add Google Fonts (Optional)</h3>
+                <div class="code-block">
+                    <code>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"&gt;</code>
+                </div>
+
+                <h3 class="trece-text-2xl trece-font-bold trece-mb-4 trece-mt-6">3. Start Building</h3>
+                <div class="code-block">
+                    <code>&lt;div class="trece-container"&gt;
+  &lt;div class="trece-grid trece-grid-gap-4"&gt;
+    &lt;div class="trece-col-6"&gt;
+      &lt;div class="trece-card"&gt;
+        &lt;h3 class="trece-card-title"&gt;Hello 13Frame!&lt;/h3&gt;
+        &lt;p&gt;Start building amazing interfaces.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section trece-glass-dark trece-mt-8">
+        <div class="trece-container">
+            <div class="trece-grid trece-grid-gap-6">
+                <div class="trece-col-4 trece-col-md-12 trece-col-sm-12">
+                    <h3 class="trece-text-2xl trece-font-bold trece-mb-3">13Frame</h3>
+                    <p class="trece-text-gray-300">A modern CSS framework for building beautiful, accessible web
+                        interfaces.</p>
+                </div>
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <h4 class="trece-text-lg trece-font-bold trece-mb-3">Documentation</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li class="trece-mb-2"><a href="#grid"
+                                style="color: var(--trece-gray-300); text-decoration: none;">Grid System</a></li>
+                        <li class="trece-mb-2"><a href="#cards"
+                                style="color: var(--trece-gray-300); text-decoration: none;">Components</a></li>
+                        <li class="trece-mb-2"><a href="#utilities"
+                                style="color: var(--trece-gray-300); text-decoration: none;">Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="trece-col-4 trece-col-md-6 trece-col-sm-12">
+                    <h4 class="trece-text-lg trece-font-bold trece-mb-3">Connect</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li class="trece-mb-2"><a href="https://github.com/trecenode"
+                                style="color: var(--trece-gray-300); text-decoration: none;">GitHub</a></li>
+                        <li class="trece-mb-2"><a href="https://x.com/13node_es"
+                                style="color: var(--trece-gray-300); text-decoration: none;">Twitter</a></li>
+                        <li class="trece-mb-2"><a href="https://www.instagram.com/13node"
+                                style="color: var(--trece-gray-300); text-decoration: none;">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="trece-text-center trece-mt-8 trece-pt-6" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                <p class="trece-text-gray-300">© 2025 13Frame. Built with ❤️ by <a href="https://13node.com"
+                        style="color: var(--trece-gray-300); text-decoration: none;">13Node.com</a>.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
