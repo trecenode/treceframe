@@ -8,7 +8,7 @@
 
 **A modern, accessible CSS framework with stunning glass effects and premium design**
 
-[View Demo](https://css.13node.com) • [Getting Started](https://css.13node.com/#grid)
+[View Demo](https://13node.com/13frame/)
 
 </div>
 
